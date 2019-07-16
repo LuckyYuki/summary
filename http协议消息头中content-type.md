@@ -1,4 +1,4 @@
-# 常见值
+# 常见值---HTTP request body的常见格式
 
 在Http协议消息头中，使用Content-Type来表示具体请求中的媒体类型信息。
 
