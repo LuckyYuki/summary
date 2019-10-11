@@ -32,7 +32,11 @@ apple.say.apply(banana);    //My color is yellow
 
 ## apply call 实例
 
+调用apply方法的时候,第一个参数是对象(this), 第二个参数是一个数组集合, 在调用Person的时候,他需要的不是一个数组,但是为什么他给我一个数组我仍然可以将数组解析为一个一个的参数,这个就是apply的一个巧妙的用处,可以将一个数组默认的转换为一个参数列表([param1,param2,param3] 转换为 param1,param2,param3) 这个如果让我们用程序来实现将数组的每一个项,来装换为参数的列表,可能都得费一会功夫,借助apply的这点特性,所以就有了以下高效率的方法:
+
 ### 数组之间追加
+
+**可以这样理解,arr1调用了push方法,参数是通过apply将数组装换为参数列表的集合.**
 
 ```javascript
 var array1 = [12 , "foo" , {name:"Joe"} , -2458]; 
@@ -48,6 +52,17 @@ var  numbers = [5, 458 , 120 , -215 ];
 var maxInNumbers = Math.max.apply(Math, numbers),   //458
     maxInNumbers = Math.max.call(Math,5, 458 , 120 , -215); //458
 ```
+
+**Math.max 可以实现得到数组中最大的一项**
+
+因为Math.max 参数里面不支持Math.max([param1,param2]) 也就是数组
+
+但是它支持Math.max(param1,param2,param3…),所以可以根据刚才apply的那个特点来解决 var max=Math.max.apply(null,array),这样轻易的可以得到一个数组中最大的一项(apply会将一个数组装换为一个参数接一个参数的传递给方法)
+
+**这块在调用的时候第一个参数给了一个null,这个是因为没有对象去调用这个方法,我只需要用这个方法帮我运算,得到返回的结果就行,.所以直接传递了一个null过去**
+
+min 同样和 max是一个思想 var min=Math.min.apply(null,array);
+
 
 ### 验证是否是数组（前提是toString()方法没有被重写过）
 
