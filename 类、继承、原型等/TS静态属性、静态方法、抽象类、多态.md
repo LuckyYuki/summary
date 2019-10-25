@@ -1,5 +1,7 @@
 # TS静态属性、静态方法、抽象类、多态
 
+https://github.com/forijk/start-with-typescript/tree/master/4.TypeScript类/
+
 ## 静态属性、静态方法
 
 ```js
